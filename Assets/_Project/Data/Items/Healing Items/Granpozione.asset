@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934811ba9395df34cbc769310f0a563e, type: 3}
+  m_Name: Granpozione
+  m_EditorClassIdentifier: 
+  _nameItem: Granpozione
+  _imageItem: {fileID: -8702173501659278061, guid: 8637238347ea8cf4b9c4bea5df5eaa24,
+    type: 3}
+  _priceItem: 200
+  _healAmount: 20
+  _descriptionItem: "Pozione pi\xF9 forte rispetto a quella semplice, il giusto compromesso
+    tra quella semplice e quella pi\xF9 forte. "

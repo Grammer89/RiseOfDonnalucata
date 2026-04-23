@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01231e158c977ea47b3033a126a628fe, type: 3}
+  m_Name: Nonnina
+  m_EditorClassIdentifier: 
+  _nameQuest: Nonnina
+  _stateQuest: 0
+  _descriptionForUi: Accompagna la nonnina
+  _descriptionForMenu: Accompagna la nonnina
+  _reward: {fileID: 11400000, guid: 4b4914fed5a98a8488da559851e44b27, type: 2}
