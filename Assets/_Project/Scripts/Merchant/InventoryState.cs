@@ -15,6 +15,10 @@ public class InventoryState
 
     public List<ItemInstance> Items
     { get => _items; }
+
+    public ItemInstance GetItem(int index)
+    {  return _items[index]; }
+
     public bool HasItem(SO_GenericItem itemData) => HasItem(itemData, 1);
 
     public bool HasItem(SO_GenericItem itemData, int requiredAmount)

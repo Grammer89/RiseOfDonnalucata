@@ -7,7 +7,9 @@ public class GameState : GenericSingleton<GameState>
     [SerializeField] private InventoryState _inventoryState = new InventoryState();
     [SerializeField] private List<GameObject> _playerActive = new List<GameObject>();
     [SerializeField] private GameObject _actualMissionUI;
+    [SerializeField] private int _numberOfMission = 1;
 
+    public int NumberOfMission => _numberOfMission;
     public InventoryState Inventory => _inventoryState;
     public List<GameObject> PlayerActive => _playerActive;
 
@@ -19,7 +21,6 @@ public class GameState : GenericSingleton<GameState>
     {
         base.Awake();
         if (_instance != this) return;
-
     }
 
     public void ModifyQuest(string quest, string nameQuest)
@@ -60,7 +61,10 @@ public class GameState : GenericSingleton<GameState>
         actualMissionUi.ModifyMissionUI("Missione completata. Hai ottenuto : " + rewardItem.NameItem);
 
         Inventory.AddItem(rewardItem, 1);
-  
+
+        _numberOfMission += 1;
+
     }
+
 }
 

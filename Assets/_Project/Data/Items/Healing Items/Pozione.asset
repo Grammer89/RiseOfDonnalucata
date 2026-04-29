@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pozione
   m_EditorClassIdentifier: 
   _nameItem: Pozione
+  _itemType: 99
   _imageItem: {fileID: 21300000, guid: f1d975f2a96c80f45b92690b57431550, type: 3}
   _priceItem: 100
   _healAmount: 10

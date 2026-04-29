@@ -3,13 +3,15 @@ using UnityEngine;
 public class LifeController : MonoBehaviour
 {
    
-    private SO_Creatura _creature;
+    [SerializeField] private SO_Creatura _creature;
     private int _actualLife;
 
+
+    public SO_Creatura Creature => _creature;
     private void Awake()
     {
         _actualLife = _creature.HpMax;
-        _creature = GetComponent<SO_Creatura>();
+       
     }
     public void TakeDamge(int damage)
     {
@@ -19,5 +21,10 @@ public class LifeController : MonoBehaviour
     public void Cure(int cure)
     {
         _actualLife = Mathf.Max(_actualLife + cure, _creature.HpMax);
-    }    
+    }
+    
+    public bool IsAlive()
+    {
+        return _actualLife > 0;
+    }
 }

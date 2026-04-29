@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Extrapozione
   m_EditorClassIdentifier: 
   _nameItem: Extrapozione
+  _itemType: 99
   _imageItem: {fileID: -9151104901211771997, guid: 8637238347ea8cf4b9c4bea5df5eaa24,
     type: 3}
   _priceItem: 500

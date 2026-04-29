@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Granpozione
   m_EditorClassIdentifier: 
   _nameItem: Granpozione
+  _itemType: 99
   _imageItem: {fileID: -8702173501659278061, guid: 8637238347ea8cf4b9c4bea5df5eaa24,
     type: 3}
   _priceItem: 200

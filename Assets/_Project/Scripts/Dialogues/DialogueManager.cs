@@ -167,7 +167,7 @@ public class DialogueManager : GenericSingleton<DialogueManager>
     public void MakeChoice(int choiceIndex)
     {
         _currentStory.ChooseChoiceIndex(choiceIndex);
-
+        ContinueStory();
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName)

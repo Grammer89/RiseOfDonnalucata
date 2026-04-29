@@ -1,10 +1,13 @@
 using UnityEngine;
 public enum ItemType
 {
-    Potion = 0,
+    None = 0,
     Weapon = 1,
     Armor = 2,
-    Spell = 3
+    Spell = 3,
+
+    Potion = 99,
+    Revify = 100
 }
 [CreateAssetMenu(fileName = "New Item", menuName = "Data/Item")]
 public class SO_GenericItem : ScriptableObject

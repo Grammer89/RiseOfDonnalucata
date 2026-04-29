@@ -44,7 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571425072403bac469696461828efc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroesActive: []
-  _heroesUI:
-  - {fileID: 0}
-  - {fileID: 0}
+  _uiBattleHero: {fileID: 0}
+  _heroesUI: {fileID: 0}
+  _uiContent: {fileID: 0}
+  _uiListObject: {fileID: 0}
+  _uiSpecialAction: {fileID: 2700473437841761252, guid: e5683d5e30219d44690722c9af036b7c,
+    type: 3}
+  _uiObjectToUse: {fileID: 6400949996095046240, guid: 85cacb858fd8ce3479ef415c7e7f099a,
+    type: 3}
+  _orderBattles: []
+  _heroesActive:
+  - {fileID: 3619494778859370609, guid: b47e4ab08a7f91544a0d55b59ca50019, type: 3}
+  _startPositionHeroes: {fileID: 0}
+  _endPositionHeroes: {fileID: 0}
+  _enemies:
+  - {fileID: 873116116898021087, guid: 346813e41a9ffb14f8a6bddbbb35469e, type: 3}
+  - {fileID: 873116116898021087, guid: dcad9d3c8d6760542a55724aa5aa2f02, type: 3}
+  - {fileID: 873116116898021087, guid: c8593860f9a6a014194436fded05d8f2, type: 3}
+  - {fileID: 873116116898021087, guid: 956b7b5c2ce46ff44b83bebc11624147, type: 3}
+  _startPositionEnemies: {fileID: 0}
+  _endPositionEnemies: {fileID: 0}
