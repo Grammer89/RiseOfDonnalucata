@@ -9,39 +9,29 @@ public class ExampleMerchant : MonoBehaviour
     [SerializeField] private UI_MerchantWindow _merchantWindow;
     [SerializeField] GameObject _merchantCanvas;
 
-    private bool _playerInRange;
-
     private void Awake()
     {
         _merchantCanvas.SetActive(false);
-        _merchantWindow.
-            Setup(_merchant);
+        _merchantWindow.Setup(_merchant);
     }
 
     private void Update()
     {
-        if (!_playerInRange) return;
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (GameState.Instance.OpenItemShop)
         {
-            _merchantCanvas.SetActive(true);
-            _merchantWindow.Setup(_merchant);
+            GameState.Instance.OpenItemShop = false;
+            StartCoroutine(ActiveItemShop());
         }
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(Utility.PlayerTag))
-        {
-            _playerInRange = true;
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator ActiveItemShop()
     {
-        if (other.CompareTag(Utility.PlayerTag))
-        {
-            _playerInRange = false;
-        }
+        WaitForSeconds yfs = new WaitForSeconds(0.5f);
+
+        yield return yfs;
+        _merchantCanvas.SetActive(true);
+        _merchantWindow.Setup(_merchant);
+
     }
 }

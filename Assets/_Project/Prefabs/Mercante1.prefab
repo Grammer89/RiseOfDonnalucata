@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7975719102231938542}
   - component: {fileID: 543319350305248538}
-  - component: {fileID: 2243420835460982562}
   - component: {fileID: 5662129230073905860}
+  - component: {fileID: 3255226464802581502}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -55,23 +55,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2243420835460982562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2217660324949656291}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c7c1f6afdf376418e8aa4826420b91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualCue: {fileID: 6766052823819687084}
-  inkJson: {fileID: 4900000, guid: 802fb7a0bc2fbbc4cb8f1b6bfa041fec, type: 3}
-  onDialogueEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &5662129230073905860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +70,23 @@ MonoBehaviour:
   _merchant: {fileID: 11400000, guid: 8fd589a1bba6d5948af2579eec40e005, type: 2}
   _merchantWindow: {fileID: 0}
   _merchantCanvas: {fileID: 0}
+--- !u!114 &3255226464802581502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2217660324949656291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c7c1f6afdf376418e8aa4826420b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualCue: {fileID: 6766052823819687084}
+  inkJson: {fileID: 4900000, guid: 966ce391bbf6c9b4bb183a7989ab324d, type: 3}
+  onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6108679572636080508
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.7, y: 2, z: -9.31}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 538221823559132562}

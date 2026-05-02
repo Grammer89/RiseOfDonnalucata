@@ -12,6 +12,7 @@ public class DialogueVariables
     private const string _saveVariablesKey = "INK_VARIABLES";
     private const string _nameMissionId = "MissionId";
     private const string _missionCompleted = "MissionCompleted";
+    private const string _openItemShop = "OpenItemShop";
     public DialogueVariables(TextAsset loadGlobalJSON)
     {
         //create the story
@@ -133,6 +134,11 @@ public class DialogueVariables
             else if( name == _missionCompleted)
             {
                 GameState.Instance.CompletedQuest();
+            }
+            else if( name == _openItemShop)
+            {
+                Debug.Log("Setto la variabile name con: " + value);
+                GameState.Instance.OpenItemShop = value;
             }
         }
     }

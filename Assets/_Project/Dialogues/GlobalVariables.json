@@ -1,1 +1,1 @@
-﻿{"inkVersion":21,"root":[[["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev",0,{"VAR=":"missione"},"str","^","/str",{"VAR=":"MissionId"},"str","^","/str",{"VAR=":"MissionCompleted"},0,{"VAR=":"ActualMission"},"/ev","end",null],"#f":1}],"listDefs":{}}
+﻿{"inkVersion":21,"root":[[["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev",0,{"VAR=":"missione"},"str","^","/str",{"VAR=":"MissionId"},"str","^","/str",{"VAR=":"MissionCompleted"},0,{"VAR=":"ActualMission"},"str","^","/str",{"VAR=":"OpenItemShop"},"/ev","end",null],"#f":1}],"listDefs":{}}

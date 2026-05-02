@@ -7,7 +7,7 @@ public class ExapleChangeLevelPoint : MonoBehaviour
     {
         if(other.gameObject.CompareTag(Utility.PlayerTag))
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Battle");
         }
     }
 }

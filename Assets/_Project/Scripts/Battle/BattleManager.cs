@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ public class BattleManager : GenericSingleton<BattleManager>
     [Header("UI Name HP MP")]
     [SerializeField] private RectTransform _uiContentNameHpMp;
     [SerializeField] private GameObject _UInameHpMp;
+    [Header("UI Hero does action")]
+    [SerializeField] private TextMeshProUGUI _uiNameHeroDoesAction;
     [Header("UI Battle Hero/ Special Action & Object")]
     [SerializeField] private RectTransform _uiContent;
     [SerializeField] private GameObject _uiListObject;
@@ -48,6 +51,10 @@ public class BattleManager : GenericSingleton<BattleManager>
     [SerializeField] private Transform _endPositionEnemies;
 
     private string _folderEnemies = "Characters/Enemies/Mission";
+    private string _folderSpriteEnemies = "/Sprite";
+
+    //Sprite ForTarget
+    private Sprite[] _iconEnemies;
 
     private OrderBattle _heroDoAction = new OrderBattle();
     private string _targetName;
@@ -56,6 +63,7 @@ public class BattleManager : GenericSingleton<BattleManager>
     private ActionType _actionType;
     private ItemInstance _item;
     private SpecialActionWithSpendMp _specialActionHero;
+    private List<GameObject> _warrior = new List<GameObject>();
 
     private int _numberEnemyDefeated;
     private int _numberHeroesDefeated;
@@ -77,10 +85,13 @@ public class BattleManager : GenericSingleton<BattleManager>
         _heroesActive = Resources.LoadAll<GameObject>("Characters/Heroes");
 
         _folderEnemies += GameState.Instance.NumberOfMission;
+        _folderSpriteEnemies = _folderEnemies + _folderSpriteEnemies;
         Debug.Log("Sto caricando  i nemici della missione" + _folderEnemies);
 
         _enemies = Resources.LoadAll<GameObject>(_folderEnemies);
-
+        _iconEnemies = new Sprite[_enemies.Length];
+        _iconEnemies = Resources.LoadAll<Sprite>(_folderSpriteEnemies);
+        Debug.Log("Il numero di immagini per i nemici sono: " + _iconEnemies.Length);
         SetupBattle();
     }
 
@@ -125,7 +136,8 @@ public class BattleManager : GenericSingleton<BattleManager>
             Vector3 positionCreature = new Vector3(startPosition.x + positionSegmentHeroes * (i + 1), 1, startPosition.z);
             prefabCreature.transform.position = positionCreature;
 
-            DetermineIntiateToAttack(creature[i], i);
+            DetermineIntiateToAttack(prefabCreature, i);
+            _warrior.Add(prefabCreature);
         }
     }
     public void DetermineIntiateToAttack(GameObject creature, int index)
@@ -147,15 +159,29 @@ public class BattleManager : GenericSingleton<BattleManager>
         OrderBattle orderBattles = new OrderBattle();
         orderBattles.Creature = SOcreature;
         orderBattles.NameCreature = orderBattles.Creature.Name;
+        orderBattles.NameGameObject = creature.name;
         if (orderBattles.Creature.CreatureType == HeroType.Enemy)
         {
             orderBattles.NameCreature += index.ToString();
+            for (int i = 0; i < _iconEnemies.Length; i++)
+            {
+                if (orderBattles.NameGameObject.Contains(_iconEnemies[i].name))
+                {
+                    orderBattles.Icon = _iconEnemies[i];
+                }
+            }
+        }
+        else
+        {
+            orderBattles.Icon = statisticPlayer.Icon;
+
         }
 
         orderBattles.IniziativaRole = Random.Range(1, 21) + SOcreature.Vel;
         orderBattles.SpecialAction = specialAction;
         orderBattles.ActualHP = SOcreature.HpMax;
         orderBattles.ActualMP = SOcreature.MaxMp;
+
         _orderBattles.Add(orderBattles);
 
     }
@@ -195,11 +221,27 @@ public class BattleManager : GenericSingleton<BattleManager>
         {
             foreach (var warrior in _orderBattles)
             {
-                if (warrior.ActualHP <= 0) continue;
 
+                if (warrior.ActualHP <= 0)
+                {
+                    //Disattivo l'enemy dalla scena
+                    if (warrior.Creature.CreatureType == HeroType.Enemy)
+                    {
+                        for (int j = 0; j < _warrior.Count; j++)
+                        {
+                            if (warrior.NameGameObject == _warrior[j].name
+                               && _warrior[j].activeSelf)
+                            {
+                                _warrior[j].SetActive(false);
+                            }
+                        }
+                        continue;
+                    }
+            }
                 Debug.Log("Fa l'azione: " + warrior.NameCreature);
                 if (warrior.Creature.CreatureType == HeroType.Enemy)
                 {
+
                     if (_uiBattleHero.activeSelf)
                     {
                         _heroesUI.SetActive(false);
@@ -214,6 +256,7 @@ public class BattleManager : GenericSingleton<BattleManager>
                     RemoveButton();
                     _heroDoAction = warrior; //Serve per capire chi sta eseguendo l'azione
                     _heroesUI.SetActive(true);
+                    SetNameHeroDoesAction(_heroDoAction);
                     yield return new WaitUntil(() => _nextAttack == true);
                     _heroesUI.SetActive(false);
                     _nextAttack = false;
@@ -233,6 +276,7 @@ public class BattleManager : GenericSingleton<BattleManager>
             }
         }
     }
+
 
     public void OnClickAttack()
     {
@@ -383,7 +427,7 @@ public class BattleManager : GenericSingleton<BattleManager>
         Debug.Log(fromTarget.NameCreature + "Ha speso " + specialActionWithMp._mpToSpend + "MP");
         Debug.Log("Gliene restano: " + fromTarget.ActualMP);
         UI_SetHPMP(fromTarget, toTarget, action);
-
+        SetDamageUI(toTarget, damage);
     }
 
     public void SetDamage(ActionType action, int damage, OrderBattle toTarget, SpecialActionWithSpendMp specialActionWithMp, ItemInstance item)
@@ -482,13 +526,36 @@ public class BattleManager : GenericSingleton<BattleManager>
                     singleTarget.SetHp(toTarget.ActualHP, toTarget.Creature.HpMax);
                 }
 
-                if(fromTarget.NameCreature == singleTarget.GetNameText())
+                if (fromTarget.NameCreature == singleTarget.GetNameText())
                 {
                     singleTarget.SetMp(fromTarget.ActualMP, fromTarget.Creature.MaxMp);
                 }
-               
+
             }
 
+        }
+
+    }
+
+    private void SetNameHeroDoesAction(OrderBattle _heroDoAction)
+    {
+        _uiNameHeroDoesAction.SetText(_heroDoAction.NameCreature);
+    }
+    public void SetDamageUI(OrderBattle toTarget, int damage)
+    {
+        Debug.Log(toTarget.NameGameObject);
+        for (int i = 0; i < _warrior.Count; i++)
+        {
+
+            if (_warrior[i].name != toTarget.NameGameObject) continue;
+
+            UI_ChangeHitValue hitDamageUI = _warrior[i].GetComponent<UI_ChangeHitValue>();
+            if (hitDamageUI != null)
+            {
+                Debug.Log("Setto nella UI" + damage + "per toTarget.NamgeGameObject");
+                hitDamageUI.On_ChangeHit(damage);
+            }
+            break;
         }
 
     }
@@ -502,10 +569,10 @@ public class BattleManager : GenericSingleton<BattleManager>
         string nameTarget = "";
         for (int i = 0; i < _orderBattles.Count; i++)
         {
-            if (_orderBattles[i].Creature.CreatureType != HeroType.Enemy )
+            if (_orderBattles[i].Creature.CreatureType != HeroType.Enemy)
             {
                 index += 1;
-                if ( index == indexHeroToAttack)
+                if (index == indexHeroToAttack)
                 {
                     nameTarget = _orderBattles[i].NameCreature;
                     break;

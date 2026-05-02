@@ -16,7 +16,13 @@ public class GameState : GenericSingleton<GameState>
     private List<SO_Quest> _listQuest = new List<SO_Quest>();
     private List<SO_Quest> _listQuestCompleted = new List<SO_Quest>();
     private const string _questNamePrefix = "Quests/";
+    private bool _openItemShop = false;
 
+    public bool OpenItemShop
+    {
+        get { return _openItemShop; }
+        set { _openItemShop = value; }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -27,14 +33,14 @@ public class GameState : GenericSingleton<GameState>
     {
         UI_ActualMission actualMissionUi = _actualMissionUI.GetComponentInChildren<UI_ActualMission>();
         int index = 0;
-        
+
         string questName = _questNamePrefix + nameQuest;
         SO_Quest actualQuest = (SO_Quest)Resources.Load(questName);
         _listQuest.Add(actualQuest);
 
         foreach (SO_Quest singleQuest in _listQuest)
         {
-   
+
             if (singleQuest.NameQuest() != nameQuest)
             {
                 index += 1;
@@ -49,14 +55,14 @@ public class GameState : GenericSingleton<GameState>
 
     public void CompletedQuest()
     {
-        
+        if (_listQuest.Count == 0 ) return;
         SO_Quest completedQuest = _listQuest[0];
         completedQuest.StateQuest = StateMission.Completed;
         _listQuest.Remove(_listQuest[0]);
         _listQuestCompleted.Add(completedQuest);
 
         SO_GenericItem rewardItem = completedQuest.Reward();
-      
+
         UI_ActualMission actualMissionUi = _actualMissionUI.GetComponentInChildren<UI_ActualMission>();
         actualMissionUi.ModifyMissionUI("Missione completata. Hai ottenuto : " + rewardItem.NameItem);
 
@@ -65,6 +71,7 @@ public class GameState : GenericSingleton<GameState>
         _numberOfMission += 1;
 
     }
+
 
 }
 

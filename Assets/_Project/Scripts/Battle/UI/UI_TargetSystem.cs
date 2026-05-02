@@ -25,11 +25,14 @@ public class UI_TargetSystem : MonoBehaviour
     {
          for (int i = 0; i < BattleManager.Instance.OrderBattle.Count; i++)
         {
-            Button buttonTarget = Instantiate(_prefabButtonTarget, _contentTarget);
+            if (BattleManager.Instance.OrderBattle[i].Creature.CreatureType == HeroType.Enemy &&
+                BattleManager.Instance.OrderBattle[i].ActualHP <= 0) { continue; }
+                Button buttonTarget = Instantiate(_prefabButtonTarget, _contentTarget);
 
-            if (BattleManager.Instance.OrderBattle[i].ActualHP <= 0)
+            if (BattleManager.Instance.OrderBattle[i].ActualHP <= 0 )
             {
                 buttonTarget.interactable = false;
+
             }
             TextMeshProUGUI text = buttonTarget.GetComponentInChildren<TextMeshProUGUI>();
             Image[] icon = buttonTarget.GetComponentsInChildren<Image>();
@@ -40,7 +43,7 @@ public class UI_TargetSystem : MonoBehaviour
             }
             if (icon != null)
             {
-                icon[1].sprite = BattleManager.Instance.OrderBattle[i].Creature.Icon;
+                icon[1].sprite = BattleManager.Instance.OrderBattle[i].Icon;
             }
             buttonTarget.onClick.AddListener(() => OnClickTarget(text.text));
         }

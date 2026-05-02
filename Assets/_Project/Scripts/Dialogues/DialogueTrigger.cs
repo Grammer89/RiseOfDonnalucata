@@ -25,6 +25,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("Si attiva la conversazione di " + inkJson.name);
                 DialogueManager.Instance.EnterDialogueMode(inkJson);
             }
 

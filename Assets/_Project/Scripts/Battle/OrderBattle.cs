@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 [Serializable]
 public class OrderBattle
 {
@@ -9,7 +10,9 @@ public class OrderBattle
     [SerializeField] private int _actualHP;
     [SerializeField] private int _actualMP;
     [SerializeField] private string _nameCreature;
-    public SO_Creatura 
+    [SerializeField] private string _nameGameObject;
+    [SerializeField] private Sprite _icon;
+    public SO_Creatura
         Creature
     {
         get { return _creature; }
@@ -26,6 +29,12 @@ public class OrderBattle
     {
         get { return _specialAction; }
         set { _specialAction = value; }
+    }
+
+    public string NameGameObject
+    {
+        get { return _nameGameObject; }
+        set { _nameGameObject = value; }
     }
 
     public string NameCreature
@@ -46,4 +55,9 @@ public class OrderBattle
         set { _actualMP = value; }
     }
 
+    public Sprite Icon
+    {
+        get { return _icon; }
+        set { _icon = value; }
+    }
 }

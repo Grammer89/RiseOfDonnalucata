@@ -23,4 +23,4 @@ MonoBehaviour:
   _vel: 2
   _rewards:
   - {fileID: 11400000, guid: 0b895a0aeb5699b4c9fcaddefeb402ee, type: 2}
-  _icon: {fileID: 21300000, guid: e3d571a7a2cd06d42baf3f781c5688aa, type: 3}
+  _icon: {fileID: -3414284911456962837, guid: 8637238347ea8cf4b9c4bea5df5eaa24, type: 3}
