@@ -3,20 +3,39 @@ using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
-    private const string _saveVariablesKey = "INK_VARIABLES";
-    private const string _nameMissionId = "MissionId";
-    private const string _missionCompleted = "MissionCompleted";
-    private const string _openItemShop = "OpenItemShop";
-    private const string _CanIfight = "CanIfight";
+    [SerializeField] private GameObject _game;
+    [SerializeField] private GameObject _info;
+
+    public void Awake()
+    {
+        _info.SetActive(false);
+        _game.SetActive(true);
+    }
     public void OnClickNewGame()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+   
         SceneManager.LoadScene("Tutorial");
     }
 
     public void OnClickExitGame()
     {
         Application.Quit();
+    }
+
+    public void OnClickInfo()
+    {
+        _game.SetActive(false);
+        _info.SetActive(true);
+    }
+
+    public void OnResume()
+    {
+        _info.SetActive(false);
+        _game.SetActive(true);
+    }
+
+    public void ResetGame()
+    {
+
     }
 }

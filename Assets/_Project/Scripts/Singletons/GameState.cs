@@ -15,16 +15,20 @@ public class GameState : GenericSingleton<GameState>
        set { _lastPositionPlayer = value; } }
 
     private bool _canIfight;
+    private bool _comingSoon;
+    private bool _resetSave;
+    public bool ResetSave { get { return _resetSave; } set { _resetSave = value; } }
     public bool CanIfight {  get { return _canIfight; } set { _canIfight = value; } }
+    public bool ComingSoon { get { return _comingSoon; } set { _comingSoon = value; } }
     public int NumberOfMission => _numberOfMission;
     public InventoryState Inventory => _inventoryState;
     public List<GameObject> PlayerActive => _playerActive;
-
+    
     private List<SO_Quest> _listQuest = new List<SO_Quest>();
     private List<SO_Quest> _listQuestCompleted = new List<SO_Quest>();
     private const string _questNamePrefix = "Quests/";
     private bool _openItemShop = false;
-
+  
     public bool OpenItemShop
     {
         get { return _openItemShop; }
@@ -78,7 +82,6 @@ public class GameState : GenericSingleton<GameState>
         _numberOfMission += 1;
 
     }
-
 
 }
 

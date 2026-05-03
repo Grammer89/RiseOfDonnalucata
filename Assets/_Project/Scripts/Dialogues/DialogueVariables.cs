@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+//using Ink.Parsed;
+
+//using Ink.Parsed;
 using Ink.Runtime;
 using UnityEngine;
 
@@ -14,16 +17,17 @@ public class DialogueVariables
     private const string _missionCompleted = "MissionCompleted";
     private const string _openItemShop = "OpenItemShop";
     private const string _CanIfight = "CanIfight";
+    private const string _comingSoon = "ComingSoon";
     public DialogueVariables(TextAsset loadGlobalJSON)
     {
         //create the story
         _globalVariablesStory = new Story(loadGlobalJSON.text);
-        // se abbiamo dati salvati, li carichiamo
-        if (PlayerPrefs.HasKey(_saveVariablesKey))
-        {
-            string jsonState = PlayerPrefs.GetString(_saveVariablesKey);
-            _globalVariablesStory.state.LoadJson(jsonState);
-        }
+        //if (PlayerPrefs.HasKey(_saveVariablesKey))
+        //{
+        //    string jsonState = PlayerPrefs.GetString(_saveVariablesKey);
+        //    Debug.Log(jsonState);
+        //    _globalVariablesStory.state.LoadJson(jsonState);
+        //}
 
         //initialize the dictionary
         Variables = new Dictionary<string, Ink.Runtime.Object>();
@@ -127,6 +131,7 @@ public class DialogueVariables
             Variables.Remove(name);
             Variables.Add(name, value);
 
+
             if (name == _nameMissionId)
             {
 
@@ -145,6 +150,14 @@ public class DialogueVariables
             {
                 GameState.Instance.CanIfight = value;
             }
+            else if (name == _comingSoon)
+            {
+
+                Debug.Log("Elimino tutte le variabili");
+                DeleteAllPrefs();
+                GameState.Instance.ComingSoon = value;
+            }
+
         }
     }
 
@@ -157,4 +170,20 @@ public class DialogueVariables
 
     }
 
+    public void DeleteAllPrefs()
+    {
+        PlayerPrefs.SetString(_saveVariablesKey, "");
+        PlayerPrefs.SetString(_nameMissionId, "");
+        PlayerPrefs.SetString(_missionCompleted, "");
+        PlayerPrefs.SetString(_openItemShop, "");
+        PlayerPrefs.SetString(_CanIfight, "");
+        PlayerPrefs.SetString(_comingSoon, "");
+        PlayerPrefs.Save();
+
+        foreach (string name in _globalVariablesStory.variablesState)
+        {
+            Ink.Runtime.Object value = _globalVariablesStory.variablesState.GetVariableWithName(name);
+            Variables.Remove(name);
+        }
+    }
 }

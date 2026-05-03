@@ -6,3 +6,4 @@ VAR ActualMission = 0 //Variabile incrementale che ci permette di gestire
 //incrementale
 VAR OpenItemShop = ""
 VAR CanIfight = ""
+VAR ComingSoon = ""

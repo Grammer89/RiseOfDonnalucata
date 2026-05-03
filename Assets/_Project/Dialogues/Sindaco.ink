@@ -32,7 +32,6 @@ INCLUDE GlobalVariables.ink
 -I nemici sono alle porte della città
 ->END
 ===completed===
-~MissionCompleted = "X"
--Grazie Paladino, questo è solo un piccolo passo per raggiungere il cuore
- della tua amata!
+-Grazie Paladino, questo è solo un piccolo passo nella tua avventura!
+ ~ComingSoon = "X"
  ->END

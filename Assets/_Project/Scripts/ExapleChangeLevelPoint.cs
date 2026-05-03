@@ -1,16 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ExapleChangeLevelPoint : MonoBehaviour
 {
-    
-    private void Update()
+    private void Awake()
     {
-        if (GameState.Instance.CanIfight)
-        {
-            Debug.Log("Si Combattee");
-            GameState.Instance.CanIfight = false;
-            ActivatedFight();
-        }
+        StartCoroutine(ActivatedFight());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,10 +17,15 @@ public class ExapleChangeLevelPoint : MonoBehaviour
            
         }
     }
-    public void ActivatedFight()
+    IEnumerator ActivatedFight()
     {
+
+        yield return new WaitUntil(() => GameState.Instance.CanIfight);
+        Debug.Log("Si combatteee");
+        yield return new WaitForSeconds(3f);
+        GameState.Instance.CanIfight = false;
         SceneManager.LoadScene("Battle");
-        Destroy(gameObject);
+
     }
 
 }
