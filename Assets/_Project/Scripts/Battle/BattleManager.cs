@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using CalculateDamages;
 using TMPro;
 using UnityEngine;
@@ -222,22 +223,8 @@ public class BattleManager : GenericSingleton<BattleManager>
             foreach (var warrior in _orderBattles)
             {
 
-                if (warrior.ActualHP <= 0)
-                {
-                    //Disattivo l'enemy dalla scena
-                    if (warrior.Creature.CreatureType == HeroType.Enemy)
-                    {
-                        for (int j = 0; j < _warrior.Count; j++)
-                        {
-                            if (warrior.NameGameObject == _warrior[j].name
-                               && _warrior[j].activeSelf)
-                            {
-                                _warrior[j].SetActive(false);
-                            }
-                        }
-                        continue;
-                    }
-            }
+                if (warrior.ActualHP <= 0) continue;
+
                 Debug.Log("Fa l'azione: " + warrior.NameCreature);
                 if (warrior.Creature.CreatureType == HeroType.Enemy)
                 {
@@ -428,6 +415,23 @@ public class BattleManager : GenericSingleton<BattleManager>
         Debug.Log("Gliene restano: " + fromTarget.ActualMP);
         UI_SetHPMP(fromTarget, toTarget, action);
         SetDamageUI(toTarget, damage);
+
+        //Disattivo l'enemy dalla scena
+        if (toTarget.Creature.CreatureType == HeroType.Enemy)
+        {
+            if (toTarget.ActualHP <= 0)
+            {
+                for (int j = 0; j < _warrior.Count; j++)
+                {
+                    if (toTarget.NameGameObject == _warrior[j].name
+                       && _warrior[j].activeSelf)
+                    {
+                        Debug.Log("Disattivo il nemico");
+                        _warrior[j].SetActive(false);
+                    }
+                }
+            }
+        }
     }
 
     public void SetDamage(ActionType action, int damage, OrderBattle toTarget, SpecialActionWithSpendMp specialActionWithMp, ItemInstance item)
