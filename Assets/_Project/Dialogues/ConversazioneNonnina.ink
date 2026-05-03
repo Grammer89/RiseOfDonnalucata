@@ -3,7 +3,11 @@ INCLUDE globalVariables.ink
     { missione:
        -0: ->intro
        -1 :->mission
-       -2 :->completed 
+       -2 :->addMissione
+         -3 : -> completed
+       -4 : -> completed
+       -5 : ->completed
+       -6 : ->completed
        }
        
 
@@ -14,22 +18,17 @@ INCLUDE globalVariables.ink
 
 ===mission===
 
-mi accompagneresti a casa?
-+[Si] ->si
-+[No] ->no
+-comm si bell!!
+~missione = missione + 1
 ->END
-
-===si===
-    -andiamo...eheheh
-    ~missione = missione + 1
-    ->END  
-===no===
- -Munnezz
- ->END  
  
 ===completed===
-~MissionCompleted = "X"
--grazie...vieni a prendere un caffè...
--Rifacciamolo...      
+-sei tal e qual al mio fu marito!
 ->END
             
+===addMissione===
+~MissionCompleted = "X"
+~missione = missione + 1
+-sei tal e qual al mio fu marito!
+-vai dal sindaco, ti sta cercando!
+->END

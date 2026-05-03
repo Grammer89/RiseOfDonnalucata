@@ -32,6 +32,7 @@ public class ExampleMerchant : MonoBehaviour
         yield return yfs;
         _merchantCanvas.SetActive(true);
         _merchantWindow.Setup(_merchant);
+        StopCoroutine(ActiveItemShop());
 
     }
 }

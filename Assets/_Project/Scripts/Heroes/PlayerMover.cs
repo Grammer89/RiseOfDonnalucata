@@ -8,9 +8,17 @@ public class PlayerMover : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+       
         _rb = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        if (GameState.Instance.LastPositionPlayer != null)
+        {
+            gameObject.transform.position = GameState.Instance.LastPositionPlayer.position;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

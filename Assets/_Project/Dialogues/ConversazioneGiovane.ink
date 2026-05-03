@@ -3,7 +3,11 @@ INCLUDE GlobalVariables.ink
      { missione:
        -0: ->intro
        -1 :->mission
-       -2 :->completed 
+       -2 :->mission 
+             -3 : -> mission
+       -4 : -> mission
+       -5 : ->mission
+       -6 : ->mission
        }
 
 ===intro===
@@ -14,8 +18,6 @@ INCLUDE GlobalVariables.ink
 
 ===mission===
 -Mo si Omm
-->END
-===completed===
--Com'è andata? eheheh     
+
 ->END
             

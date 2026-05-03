@@ -30,7 +30,10 @@ public class UI_MenuGameNew : MonoBehaviour
 
     public void OnClickExitGame()
     {
+
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
         SceneManager.LoadScene("Intro");
     }
-
 }
+

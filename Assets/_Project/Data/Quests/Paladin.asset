@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01231e158c977ea47b3033a126a628fe, type: 3}
-  m_Name: Nonnina
+  m_Name: Paladin
   m_EditorClassIdentifier: 
-  _nameQuest: Nonnina
+  _nameQuest: Paladin
   _stateQuest: 0
-  _descriptionForUi: Vedi cosa ti dice la nonnina
-  _descriptionForMenu: Vedi cosa ti dice la nonnina
-  _reward: {fileID: 11400000, guid: 4b4914fed5a98a8488da559851e44b27, type: 2}
+  _descriptionForUi: "Sconfiggi i nemici alle porte della citt\xE0!"
+  _descriptionForMenu: "Sconfiggi i nemici alle porte della citt\xE0!"
+  _reward: {fileID: 11400000, guid: 0b895a0aeb5699b4c9fcaddefeb402ee, type: 2}

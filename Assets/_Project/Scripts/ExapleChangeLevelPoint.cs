@@ -1,13 +1,33 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class ExapleChangeLevelPoint : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    
+    private void Update()
     {
-        if(other.gameObject.CompareTag(Utility.PlayerTag))
+        if (GameState.Instance.CanIfight)
         {
-            SceneManager.LoadScene("Battle");
+            Debug.Log("Si Combattee");
+            GameState.Instance.CanIfight = false;
+            ActivatedFight();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(Utility.PlayerTag) &&
+           (GameState.Instance.CanIfight))
+        {
+            GameState.Instance.LastPositionPlayer = other.gameObject.transform;
+           
+        }
+    }
+    public void ActivatedFight()
+    {
+        SceneManager.LoadScene("Battle");
+        Destroy(gameObject);
+    }
+
 }
+
+

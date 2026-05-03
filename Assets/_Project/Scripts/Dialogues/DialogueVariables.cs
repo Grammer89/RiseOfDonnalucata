@@ -13,6 +13,7 @@ public class DialogueVariables
     private const string _nameMissionId = "MissionId";
     private const string _missionCompleted = "MissionCompleted";
     private const string _openItemShop = "OpenItemShop";
+    private const string _CanIfight = "CanIfight";
     public DialogueVariables(TextAsset loadGlobalJSON)
     {
         //create the story
@@ -131,14 +132,18 @@ public class DialogueVariables
 
                 GameState.Instance.ModifyQuest(name, GetString(name));
             }
-            else if( name == _missionCompleted)
+            else if (name == _missionCompleted)
             {
                 GameState.Instance.CompletedQuest();
             }
-            else if( name == _openItemShop)
+            else if (name == _openItemShop)
             {
                 Debug.Log("Setto la variabile name con: " + value);
                 GameState.Instance.OpenItemShop = value;
+            }
+            else if (name == _CanIfight)
+            {
+                GameState.Instance.CanIfight = value;
             }
         }
     }

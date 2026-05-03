@@ -50,7 +50,7 @@ public class BattleManager : GenericSingleton<BattleManager>
     [SerializeField] private Transform _startPositionEnemies;
     [SerializeField] private Transform _endPositionEnemies;
 
-    private string _folderEnemies = "Characters/Enemies/Mission";
+    private string _folderEnemies = "Characters/Enemies/Mission2";
     private string _folderSpriteEnemies = "/Sprite";
 
     //Sprite ForTarget
@@ -84,7 +84,7 @@ public class BattleManager : GenericSingleton<BattleManager>
 
         _heroesActive = Resources.LoadAll<GameObject>("Characters/Heroes");
 
-        _folderEnemies += GameState.Instance.NumberOfMission;
+        //_folderEnemies += GameState.Instance.NumberOfMission;
         _folderSpriteEnemies = _folderEnemies + _folderSpriteEnemies;
         Debug.Log("Sto caricando  i nemici della missione" + _folderEnemies);
 

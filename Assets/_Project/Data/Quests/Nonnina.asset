@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameQuest: Nonnina
   _stateQuest: 0
-  _descriptionForUi: Accompagna la nonnina
-  _descriptionForMenu: Accompagna la nonnina
+  _descriptionForUi: Vedi che ti dice la nonnina
+  _descriptionForMenu: Vedi che ti dice la nonnina
   _reward: {fileID: 11400000, guid: 4b4914fed5a98a8488da559851e44b27, type: 2}

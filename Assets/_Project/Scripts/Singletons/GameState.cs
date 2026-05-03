@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Ink.Runtime;
 using UnityEngine;
 
 
@@ -7,8 +8,14 @@ public class GameState : GenericSingleton<GameState>
     [SerializeField] private InventoryState _inventoryState = new InventoryState();
     [SerializeField] private List<GameObject> _playerActive = new List<GameObject>();
     [SerializeField] private GameObject _actualMissionUI;
-    [SerializeField] private int _numberOfMission = 1;
+    [SerializeField] private int _numberOfMission = 0;
+    [SerializeField] Transform _lastPositionPlayer;
+    public Transform LastPositionPlayer 
+    {  get { return _lastPositionPlayer; }
+       set { _lastPositionPlayer = value; } }
 
+    private bool _canIfight;
+    public bool CanIfight {  get { return _canIfight; } set { _canIfight = value; } }
     public int NumberOfMission => _numberOfMission;
     public InventoryState Inventory => _inventoryState;
     public List<GameObject> PlayerActive => _playerActive;
