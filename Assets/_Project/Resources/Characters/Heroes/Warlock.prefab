@@ -166,7 +166,7 @@ MonoBehaviour:
   _statisticHero: {fileID: 11400000, guid: 214d490f2da9b624f843801ce7fefceb, type: 2}
   _statisticHeroSpecialAction: {fileID: 11400000, guid: e5b26129685ca1547960a5f0da888f28,
     type: 2}
-  _icon: {fileID: 21300000, guid: 30f736af053d2094e9406aa272c0725b, type: 3}
+  _icon: {fileID: 21300000, guid: 23f3104338c0ee04baafeb72f89de665, type: 3}
 --- !u!114 &6997686123112331341
 MonoBehaviour:
   m_ObjectHideFlags: 0
